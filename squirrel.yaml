@@ -18,8 +18,7 @@
 
 
 # 要比共享目录的同名文件的 config_version 大才可以生效
-config_version: '2026-01-31'  # 对应的鼠须管版本: 1.1.2
-
+config_version: '2026-04-19-2'  # 已更新
 
 # 键盘布局  last | default | _custom_
 # last: 上次使用的英文键盘布局
@@ -34,22 +33,30 @@ show_notifications_when: appropriate
 
 # ascii_mode、inline、no_inline、vim_mode 等等设定
 # 可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
+# ~ % osascript -e 'id of app "Emacs"'
+# org.gnu.Emacs
 app_options:
-  # com.apple.Spotlight:
-  #   ascii_mode: true    # 开启默认英文
+  com.apple.Spotlight:
+    ascii_mode: true    # 开启默认英文
+  org.gnu.Emacs:
+    ascii_mode: true    # Emacs 开启默认英文
+  com.github.wez.wezterm:
+    ascii_mode: true
+  com.eusoft.eudic:
+    ascii_mode: true
   # com.microsoft.VSCode:
   #   ascii_mode: false   # 关闭默认英文
 
 
 style:
-  # 选择皮肤，亮色与暗色主题
-  color_scheme: purity_of_form_custom
-  color_scheme_dark: purity_of_form_custom
+  # 选择皮肤，亮色与暗色主题（跟随系统日/夜自动切换）
+  color_scheme: apple-mist-light-lilacrangwokanyixia
+  color_scheme_dark: catppuccin-mist-mocha
 
   # 以下是预设选项。如果皮肤没写，则使用这些属性；如果皮肤写了，使用皮肤的。
 
   # 候选框与文字的排列方式
-  candidate_list_layout: stacked  # stacked | linear       皮肤横竖排显示是调整这个
+  candidate_list_layout: linear   # stacked | linear       皮肤横竖排显示是调整这个
   text_orientation: horizontal    # horizontal | vertical  文字方向
   # 拼音或词句是否显示在键入位置
   inline_preedit: true            # true | false  键入码显示位置
@@ -72,17 +79,19 @@ style:
   # %@ 和 %c 在鼠须管 1.0 弃用，%@ 等同于 "[candidate] [comment]"，%c 于等同 "[label]"
   candidate_format: '[label]. [candidate] [comment]'
 
-  #base_offset: 0                 # 字基高
-  font_face: 'Avenir'
-  font_point: 16
-  #label_font_face: 'Avenir'
+  # 字体（中英文混排：英文优先 SF Pro Text，中文回退到苹方）
+  font_face: "Source Code Pro, LXGW WenKai Mono TC"
+  label_font_face: "Source Code Pro, LXGW WenKai Mono TC"
+  comment_font_face: "Source Code Pro, LXGW WenKai Mono TC"
+
+  #font_point: 13
   #label_font_point: 12
-  #comment_font_face: 'Avenir'
-  #comment_font_point: 16
+  #comment_font_point: 12
 
 
 # 皮肤列表
 preset_color_schemes:
+
   # 对 purity_of_form 略微调整颜色，让色彩更柔和点，补全其他选项和注释
   purity_of_form_custom:
     name: "純粹的形式／Purity of Form Custom"
@@ -128,7 +137,9 @@ preset_color_schemes:
     # border_color:                         # 外边框颜色
 
 
+  # ========================================
   # 下面是内置的皮肤 https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
+  # ========================================
 
   native:
     name: 系統配色
@@ -416,6 +427,7 @@ preset_color_schemes:
     hilited_comment_text_color: 0x289989    #Lab 60 ,-20, 65
     hilited_text_color: 0xBE706D            #Lab 50 , 15,-45
 
+
   retro_green:
     name: 綠色熒光屏
     author: 佛振 <chen.sst@gmail.com>
@@ -443,3 +455,25 @@ preset_color_schemes:
     border_width: 2
     border_height: 2
     border_color: 0x0093FF
+
+  dracula:
+    name: dracula
+    horizontal: true
+    candidate_format: "%c %@ "
+    font_point: 16
+    label_font_point: 14
+    corner_radius: 5
+    line_spacing: 10
+    back_color: 0x362A28
+    border_color: 0x362A28
+    text_color: 0x6CB8FF
+    hilited_text_color: 0x5A4744
+    hilited_back_color: 0xF2F8F8
+    hilited_candidate_label_color: 0xfafafa
+    hilited_candidate_text_color: 0xF2F8F8
+    hilited_candidate_back_color: 0xC679FF
+    hilited_comment_text_color: 0x362b00
+    candidate_text_color: 0xF993BD
+    comment_text_color: 0xFDE98B
+    inline_preedit: true
+
