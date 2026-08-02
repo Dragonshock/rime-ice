@@ -1,0 +1,27 @@
+# 雾凇拼音自定义配置
+# 使用方法：将此文件放在配置目录，重新部署即可
+# 官方说明：translator/enable_user_dict 默认开启，会记录输入习惯到 *.userdb/
+
+patch:
+  # ---------- 开关默认值 ----------
+  # 0 = 中文，1 = 英文。先前误设为英文，导致每次进入输入框都是英文状态
+  switches/@0/reset: 0
+  # 默认简体中文，防止被 save_options 记住繁体状态
+  switches/@2/reset: 0
+  # 默认半角（0 = 半角，1 = 全角），防止被 save_options 记住全角状态导致英文/标点/空格输出全角
+  switches/@4/reset: 0
+
+  # ---------- 用户词典 / 学习习惯 ----------
+  # 官方默认即为 true；显式写出避免被其它补丁关闭
+  # 记录选词，动态调频；词条写入 rime_ice.userdb/
+  translator/enable_user_dict: true
+  # 根据连续上屏历史自动造词（如单字拼出的短语）
+  translator/enable_encoder: true
+  translator/encode_commit_history: true
+  translator/max_phrase_length: 7
+
+  # ---------- 置顶常用词（防止错误词频把正确词压下去）----------
+  # pin_cand_filter 只调整已有候选项顺序，不创造新编码，可参与造词
+  # 输入 wode / wo de 时强制「我的」在最前（解决用户库中「握的」被错误抬权的问题）
+  pin_cand_filter/+:
+    - "wo de	我的"
