@@ -5,6 +5,8 @@ dist/
 
 build/
 sync/
+backups/
+.grok/
 *.userdb/
 installation.yaml
 user.yaml
